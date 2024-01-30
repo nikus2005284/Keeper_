@@ -1,0 +1,47 @@
+﻿@page
+@model Web.Pages.AuthModel
+@{
+}
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="~/css/site.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <center>
+    <div class="wrapper">
+
+
+        <h1>Авторизация</h1>
+        <form method="post" class="form-signin" role="form">
+
+            <div asp-validation-summary="All"></div>
+
+            <span asp-validation-for="InputAuth.login"></span>
+            <input type="text" asp-for="InputAuth.login" placeholder="Имя пользователя" requaired autofocus>
+
+            <p></p>
+
+            <span asp-validation-for="InputAuth.password"></span>
+            <input type="password" asp-for="InputAuth.password" placeholder="Пароль" requaired autofocus>
+            
+            <p></p>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        </form>
+            <div class="register_link">
+                <p>
+                    Нет аккаунта?
+                    <a asp-page="SignUp">Зарегистрироваться</a>
+                </p>
+            </div>
+    </div>
+    </center>
+
+</body>
+
+</html>

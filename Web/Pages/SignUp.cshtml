@@ -1,0 +1,49 @@
+﻿@page
+@model Web.Pages.SignUpModel
+@{
+}
+
+<head>
+    <title>Sing Up</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/stileSignUp.css" />
+</head>
+<body>
+    <center>
+        <div class="box">
+            <p></p>
+            <h2>Регистрация</h2>
+            <form method="post" class="form-signin" role="form">
+
+                <div asp-validation-summary="All"></div>
+
+                <span asp-validation-for="InputSignUp.login"></span>
+                <input type="text" asp-for="InputSignUp.login" class="form-control" placeholder="Почта" autofocus>
+
+                <p></p>
+
+                <span asp-validation-for="InputSignUp.password"></span>
+                <input type="password" asp-for="InputSignUp.password" class="form-control" placeholder="Пароль" required autofocus>
+
+                <p></p>
+
+                <span asp-validation-for="InputSignUp.userName"></span>
+                <input type="text" asp-for="InputSignUp.userName" class="form-control" placeholder="Имя" autofocus>
+
+                <p></p>
+
+                <input type="text" name = "sPassport" class="form-control" placeholder="Серия паспорта" required autofocus>
+               
+                <p></p>
+
+                <input type="text" name="nPassport" class="form-control" placeholder="Номер паспорта" required autofocus>
+
+                <p></p>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    Зарегистрироваться
+                </button>
+            </form>
+
+        </div>
+    </center>
+</body>
