@@ -1,0 +1,55 @@
+﻿@page "{id}"
+@model Web.Pages.HistoryModel
+@{
+}
+
+<center>
+    <div style="background: green; border-radius: 8px">
+        <h2>История заявок</h2>
+        <select>
+            <option value="1">Личная</option>
+            <option value="2">Групповая</option>
+        </select>
+    </div>
+</center>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td><h3>ID</h3></td>
+            <td><h3>Подразделение</h3></td>
+            <td><h3>Дата</h3></td>
+            <td><h3>Время</h3></td>
+            <td><h3>Статус</h3></td>
+            <td><h3>Комментарий</h3></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var individ in Model.Individs)
+        {
+            <tr>
+                <td>
+                    <h3>@individ.id</h3>
+                </td>
+                <td>
+                    <h3>@individ.division</h3>
+                </td>
+                <td>
+                    <h3>@individ.beginDate</h3>
+                </td>
+                <td>
+                    <h3>@individ.endDate</h3>
+                </td>
+                <td>
+                    <h3>@individ.status</h3>
+                </td>
+                <td>
+                    <h3>@individ.comment</h3>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<center>
+    <a class="btn btn-lg btn-primary btn-block" asp-page="Index">Назад</a>
+</center>
