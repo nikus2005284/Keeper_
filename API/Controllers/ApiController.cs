@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Office2019.Presentation;
 
 namespace API.Controllers
 {
@@ -85,22 +86,46 @@ namespace API.Controllers
         [HttpPost("SignUp")]
         public IActionResult SignUp([FromBody] User InputSignUp)
         {
+            if (FindUserForPassport(InputSignUp.passport) == null)
+            {
+                SignUpIfFind(InputSignUp);
+                return Ok();
+            }
+            else
+            {
+                try
+                {
+                    InputSignUp.password = InputSignUp.HashPassword(InputSignUp.password);
+                    InputSignUp.blFirst = true;
+                    InputSignUp.blLast = true;
 
+                    _db.user.Add(InputSignUp);
+                    _db.SaveChanges();
+
+                    var user = _db.user;
+                    return Ok(user);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+        }
+
+        [HttpPut("SignUpIfFind")]
+        public IActionResult SignUpIfFind([FromBody] User InputSignUp)
+        {
+            _db.user.Attach(InputSignUp).State = EntityState.Modified;
             try
             {
-                InputSignUp.password = InputSignUp.HashPassword(InputSignUp.password);
-
-                _db.user.Add(InputSignUp);
                 _db.SaveChanges();
 
-                var user = _db.user;
-                return Ok(user);
+                return Ok();
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-
         }
         #endregion
 
@@ -130,7 +155,12 @@ namespace API.Controllers
         [HttpPost("CreateIndivid")]
         public IActionResult CreateIndivid([FromBody] Individ Individ)
         {
-
+            bool BlackList = true;
+            if (!CheckBlackList(Individ.passport))
+            {
+                BlackList = false;
+            }
+            Individ.blackList = BlackList;
             try
             {
                 _db.individ.Add(Individ);
@@ -150,7 +180,7 @@ namespace API.Controllers
         [HttpPut("ApprovalIndivid")]
         public IActionResult ApprovalIndivid([FromBody] Individ PutIndivid)
         {
-            _db.Attach(PutIndivid).State = EntityState.Modified;
+            _db.individ.Attach(PutIndivid).State = EntityState.Modified;
 
             try
             {
@@ -192,13 +222,20 @@ namespace API.Controllers
         [HttpPost("CreateGroups")]
         public IActionResult CreateGroups([FromBody] List<GroupUsers> groupUser)
         {
-
             if (groupUser != null)
             {
+                bool BlackList = true;
+                foreach (var user in groupUser)
+                {
+                    if (!CheckBlackList(user.passport))
+                    {
+                        BlackList = false;
+                    }
+                }
                 foreach (var user in groupUser)
                 {
                     user.applicationNumber = GetNextApplicationNumber();
-
+                    user.blackList = BlackList;
                     _db.groupUsers.Add(user);
                 }
                 try
@@ -218,20 +255,69 @@ namespace API.Controllers
         }
         #endregion
 
+        #region Поиск по паспорту
+        [HttpGet("FindUserForPassport")]
+        public User FindUserForPassport(string passport)
+        {
+            User user = _db.user.Where(u => u.passport == passport).FirstOrDefault();
+            return user;
+        }
+        #endregion
+
+        #region Проверка на черный список
+        [HttpPost("CheckBlackList")]
+        public bool CheckBlackList(string Passport)
+        {
+            bool result = true;
+            User user = FindUserForPassport(Passport);
+            if (user == null)
+            {
+                User User = new User();
+                try
+                {
+                    User.passport = Passport;
+                    User.blFirst = true;
+                    User.blLast = true;
+
+                    _db.user.Add(User);
+                    _db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                }
+                result = true;
+                return result;
+            }
+            else
+            {
+                if (user.blFirst == false && user.blLast == false)
+                {
+                    result = false;
+                    return result;
+                }
+                else
+                {
+                    result = true;
+                    return result;
+                }
+            }
+        }
+        #endregion
+
         #region Костыль
         static List<GroupUsers> Kostil { get; set; } = new List<GroupUsers>();
         [HttpPost("PostKostil")]
         public IActionResult PostKostil(List<GroupUsers> kostil)
         {
-            Kostil = kostil; 
-            
+            Kostil = kostil;
+
             return Ok();
         }
 
         [HttpGet("GetKostil")]
         public IActionResult GetKostil()
         {
-            return Ok(Kostil); 
+            return Ok(Kostil);
         }
         #endregion
 

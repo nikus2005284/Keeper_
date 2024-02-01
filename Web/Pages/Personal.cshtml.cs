@@ -28,7 +28,6 @@ namespace Web.Pages
         public List<Target> Targets { get; set; } = new List<Target>();
         public List<Division> Divisions { get; set; } = new List<Division>();
         public List<Employees> Employees { get; set; } = new List<Employees>();
-        public IFormFile Photo { get; }
 
         [BindProperty]
         public Individ Individ { get; set; }

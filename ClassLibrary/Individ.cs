@@ -29,6 +29,6 @@ namespace ClassLibrary
         public string employee { get; set; }
         public string? status { get; set; }
         public string? comment { get; set; }
-
+        public bool? blackList { get; set; }
     }
 }

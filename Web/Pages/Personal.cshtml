@@ -149,7 +149,7 @@
                             <img src="~/Files/1.jpg" id="img" width="120px" height="120px">
 
                             <p></p>
-                            <input type="file" onchange="readURL(this);" />
+                            <input type="file" name="uploadedPhoto" onchange="readURL(this);" />
                         </center>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('#img').attr('src', e.target.result).width(150).height(200);
+                $('#img').attr('src', e.target.result).width(120).height(120);
             };
             reader.readAsDataURL(input.files[0]);
         }
