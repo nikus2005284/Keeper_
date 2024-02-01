@@ -3,53 +3,100 @@
 @{
 }
 
-<center>
-    <div style="background: green; border-radius: 8px">
-        <h2>История заявок</h2>
-        <select>
-            <option value="1">Личная</option>
-            <option value="2">Групповая</option>
-        </select>
-    </div>
-</center>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/site.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <center>
+        <div style="background: green; border-radius: 8px">
+            <h2>История заявок</h2>
+            <form id="myForm" method="post" asp-page-handler="Option">
+                <select asp-for="@HistoryModel.Option" onChange=selectChange(this.value)>
+                    <option value="1">Личная</option>
+                    <option value="2">Групповая</option>
+                </select>
+            </form>
+        </div>
+    </center>
 
-<table class="table">
-    <thead>
-        <tr>
-            <td><h3>ID</h3></td>
-            <td><h3>Подразделение</h3></td>
-            <td><h3>Дата</h3></td>
-            <td><h3>Время</h3></td>
-            <td><h3>Статус</h3></td>
-            <td><h3>Комментарий</h3></td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var individ in Model.Individs)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    <h3>@individ.id</h3>
-                </td>
-                <td>
-                    <h3>@individ.division</h3>
-                </td>
-                <td>
-                    <h3>@individ.beginDate</h3>
-                </td>
-                <td>
-                    <h3>@individ.endDate</h3>
-                </td>
-                <td>
-                    <h3>@individ.status</h3>
-                </td>
-                <td>
-                    <h3>@individ.comment</h3>
-                </td>
+                <td><h3>ID</h3></td>
+                <td><h3>Подразделение</h3></td>
+                <td><h3>Дата</h3></td>
+                <td><h3>Время</h3></td>
+                <td><h3>Статус</h3></td>
+                <td><h3>Комментарий</h3></td>
             </tr>
-        }
-    </tbody>
-</table>
-<center>
-    <a class="btn btn-lg btn-primary btn-block" asp-page="Index">Назад</a>
-</center>
+        </thead>
+        <tbody>
+            @if (HistoryModel.Option == 1)
+            {
+                foreach (var individ in Model.Individs)
+                {
+                    <tr>
+                        <td>
+                            <h3>@individ.id</h3>
+                        </td>
+                        <td>
+                            <h3>@individ.division</h3>
+                        </td>
+                        <td>
+                            <h3>@individ.beginDate</h3>
+                        </td>
+                        <td>
+                            <h3>@individ.endDate</h3>
+                        </td>
+                        <td>
+                            <h3>@individ.status</h3>
+                        </td>
+                        <td>
+                            <h3>@individ.comment</h3>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                foreach (var group in Model.GroupUsers)
+                {
+                    <tr>
+                        <td>
+                            <h3>@group.applicationNumber</h3>
+                        </td>
+                        <td>
+                            <h3>@group.division</h3>
+                        </td>
+                        <td>
+                            <h3>@group.beginDate</h3>
+                        </td>
+                        <td>
+                            <h3>@group.endDate</h3>
+                        </td>
+                        <td>
+                            <h3>@group.status</h3>
+                        </td>
+                        <td>
+                            <h3>@group.comment</h3>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <center>
+        <a class="btn btn-lg btn-primary btn-block" asp-page="Index">Назад</a>
+    </center>
+</body>
+</html>
+
+<script>
+    function selectChange(val) {
+        //Set the value of action in action attribute of form element.
+        //Submit the form
+        $('#myForm').submit();
+    }
+</script>

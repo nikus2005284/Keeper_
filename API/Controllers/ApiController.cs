@@ -67,8 +67,18 @@ namespace API.Controllers
         public IActionResult GetIndivid(int id)
         {
             var user = GetById(id);
-            var employees = _db.individ.Where(u => u.passport == user.passport);
-            return Ok(employees);
+            var individs = _db.individ.Where(u => u.passport == user.passport);
+            return Ok(individs);
+        }
+        #endregion
+
+        #region Вывести все индивидуальные заявки по пользователю
+        [HttpGet("GetGroups/{id}")]
+        public IActionResult GetGroups(int id)
+        {
+            var user = GetById(id);
+            var groups = _db.groupUsers.Where(u => u.passport == user.passport);
+            return Ok(groups);
         }
         #endregion
 
@@ -305,6 +315,19 @@ namespace API.Controllers
         #endregion
 
         #region Костыль
+        static int Options = 1;
+        [HttpPost("PostOptions")]
+        public IActionResult PostOptions(int option)
+        {
+            Options = option;
+
+            return Ok();
+        }
+        [HttpGet("GetOptions")]
+        public IActionResult GetOptions()
+        {
+            return Ok(Options);
+        }
         static List<GroupUsers> Kostil { get; set; } = new List<GroupUsers>();
         [HttpPost("PostKostil")]
         public IActionResult PostKostil(List<GroupUsers> kostil)
