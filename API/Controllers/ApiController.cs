@@ -72,7 +72,7 @@ namespace API.Controllers
         }
         #endregion
 
-        #region Вывести все индивидуальные заявки по пользователю
+        #region Вывести все груповые заявки по пользователю
         [HttpGet("GetGroups/{id}")]
         public IActionResult GetGroups(int id)
         {
