@@ -1,18 +1,354 @@
+body {
+    margin-bottom: 10px;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #767a7c4c;
+}
+
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 15px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+.btn {
+    margin-right: 80px;
 }
+
+    .btn:hover {
+        box-shadow: 0px 0px 5px 1px #1c1c1c;
+    }
+
+/*.wrapper {
+    margin-top: 60px;
+}*/
+
+h1 {
+    margin: 60px;
+    margin-right: 145px;
+}
+
+
+/*регистрация*/
+
+.box {
+    margin: 100px;
+    position: relative;
+    background: #1c1c1c;
+    border-radius: 8px;
+}
+
+#Sign {
+    width: 380px;
+    height: 510px;
+}
+
+#Auth {
+    width: 380px;
+    height: 400px;
+}
+
+.box form {
+    position: absolute;
+    inset: 4px;
+    background: #222;
+    padding: 40px 40px;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+    .box form h2 {
+        color: #fff;
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: 0.1em;
+    }
+
+.inputBox {
+    position: relative;
+    width: 300px;
+    margin-top: 25px;
+}
+
+    .inputBox input {
+        position: relative;
+        width: 100%;
+        padding: 20px 10px 10px;
+        background: transparent;
+        outline: none;
+        border: none;
+        box-shadow: none;
+        color: #23242a;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+        z-index: 10;
+    }
+
+    .inputBox span {
+        position: absolute;
+        left: 0;
+        padding: 20px 0px 10px;
+        pointer-events: none;
+        color: #8f8f8f;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+    }
+
+    .inputBox input:valid ~ span,
+    .inputBox input:focus ~ span {
+        color: #fff;
+        font-size: 0.75em;
+        transform: translateY(-34px);
+    }
+
+    .inputBox i {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+        border-radius: 4px;
+        overflow: hidden;
+        transition: 0.5s;
+        pointer-events: none;
+    }
+
+    .inputBox input:valid ~ i,
+    .inputBox input:focus ~ i {
+        height: 44px;
+    }
+
+.box form .links {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .box form .links a {
+        margin: 10px 0;
+        font-size: 0.75em;
+        color: #8f8f8f;
+        text-decoration: none;
+    }
+
+        .box form .links a:hover,
+        .box form .links a:nth-child(2) {
+            color: #fff;
+        }
+
+.inputBox input[type="submit"] {
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.remember_forgot input[type="checkbox"] {
+    accent-color: green;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.remember_forgot label {
+    color: white;
+}
+
+.info {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    background: #b6b6b6c4;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+    .info select[name="subdivision"] {
+        width: 400px;
+    }
+
+#block1 {
+    float: left;
+    display: block;
+    margin: 2px;
+}
+
+#block2 {
+    float: right;
+    width: 550px;
+    display: block;
+    margin: 2px;
+    height: 171px;
+}
+
+.but {
+    margin: 60px -700px 79px 31px;
+    width: 0;
+}
+
+.info2 {
+    display: inline-block;
+    margin: 10px;
+    width: 1030px;
+    height: 326px;
+    background: #b6b6b6c4;
+    border-radius: 8px;
+    margin-left: 0px;
+}
+
+.foto {
+    float: none;
+    display: inline-block;
+    padding-top: 50px;
+    width: 220px;
+    height: 145px;
+}
+
+    .foto input[type="text"] {
+        width: 400px;
+    }
+
+table {
+    display: inline-block;
+    padding-left: 15px;
+    padding-top: 8px;
+}
+
+.info2_header {
+    margin-top: 11px;
+}
+
+td {
+    padding: 10px;
+    padding-right: 10px;
+}
+
+.wrapper_1 {
+    padding: 60px;
+}
+
+.wrapper_2 {
+    padding: 60px;
+    float: right;
+}
+
+
+
+.block3 {
+    padding-top: 200px;
+}
+
+/*______________________________________________________*/
+/*для личного*/
+
+input {
+    border-radius: 10px;
+    border: 0;
+    padding: 5px 0px 05px 10px;
+}
+
+select {
+    border-radius: 10px;
+    border: 0;
+    padding: 5px 0px 05px 10px;
+}
+
+h2 {
+    margin: 20px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+    /*background-color: rgb(255, 162, 68);
+    line-height: 40px;
+    width:auto;
+    margin-top:-11px;
+    border-radius: 10px;
+    display: block;*/
+}
+
+h5 {
+    font-size: 17px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+/*______________________________________________________*/
+/*групповая*/
+
+body {
+    font-style: normal;
+}
+
+.g_table {
+    margin-left: 70px;
+    margin-bottom: 15px;
+}
+
+#block5 {
+    width: 468px;
+    height: 250px;
+    float: left;
+    margin-left: 195px;
+}
+
+#block6 {
+    width: 400px;
+    height: 210px;
+    float: left;
+}
+
+#block7 {
+    width: 889px;
+}
+
+.info_visitor {
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#block8 {
+    width: 549px;
+    height: 318px;
+}
+
+#block10 {
+    margin: 50px;
+}
+
+#button_add, #button1, #button2 {
+    border: 0;
+    border-radius: 30px;
+    height: 40px;
+    width: 190px;
+}
+
+    #button_add:hover, #button1:hover, #button2:hover {
+        box-shadow: 0px 0px 5px 1px #1c1c1c;
+    }

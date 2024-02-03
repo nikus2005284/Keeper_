@@ -7,228 +7,217 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="~/css/site.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
-<body>
-    <a class="btn btn-lg btn-primary btn-block" asp-page="Index" style="padding-left: 10px">
-        <h4>Назад</h4>
-    </a>
-    <center>
-        <div class="title">
-            <h4>Форма записи на посещение мероприятия</h4>
-        </div>
+	<body>
+		<a class="btn btn-outline-dark" asp-page="Index">Назад</a>
+		<center>
 
-        <div class="container">
-            <form method="post" role="form" enctype="multipart/form-data">
+			<div class="title">
+				<h2>Форма записи на посещение мероприятия</h2>
+			</div>
 
+			<div class="container">
+				<form method="post" role="form" enctype="multipart/form-data">
+					<div>
+						<div id="block5" class="info">
+							<h3>Информация для пропуска</h3>
+							<div class="info_pass_gray">
+								<p>Срок действия заявки:</p>
+								<div class="wrapper">
+									<p>С*</p>
+									<input type="date" asp-for="User.beginDate" required="required" />
+									<p>ПО</p>
+									<input type="date" asp-for="User.endDate" required="required" />
+								</div>
+								<p>Цель посещения:</p>
+								<select asp-for="User.target">
+									<option value="">Выберите цель посещения</option>
+									@foreach (var target in GroupsModel.Targets)
+									{
+										<option value="@target.info">@target.info</option>
+									}
+								</select>
+							</div>
 
-                <div class="info">
-                    <h6>Информация для пропуска</h6>
-                    <div class="info_pass_gray">
-                        <p>Срок действия заявки:</p>
-                        <div class="wrapper">
-                            <p>С*</p>
-                            <input type="date" asp-for="User.beginDate" required="required" />
-                            <p>ПО</p>
-                            <input type="date" asp-for="User.endDate" required="required" />
-                        </div>
-                        <p>Цель посещения:</p>
-
-                        <select asp-for="User.target">
-                            <option value="">Выберите цель посещения</option>
-                            
-                            @foreach (var target in GroupsModel.Targets)
-                            {
-                                <option value="@target.info">@target.info</option>
-                            }
-
-
-                        </select>
-                    </div>
-
-                </div>
+						</div>
 
 
-                <div class="info">
-                    <h6>Принимающая сторона</h6>
-                    <p>Подразделение*:</p>
-                    <select asp-for="User.division">
-                        <option value="">Выберите подразделение</option>
-                        @foreach (var division in GroupsModel.Divisions)
-                        {
-                            <option value="@division.info">@division.info</option>
-                        }
-
-                    </select>
-                    <div class="name_of_personal_division">
-                        <p>ФИО*:</p>
-                        <select asp-for="User.employee" runat="server">
-                            <option value="">Выберите сотрудника</option>
-                            @{
-                                foreach (var division in GroupsModel.Divisions)
-                                {
-                                    <optgroup label="@division.info">
-                                        @foreach (var employees in GroupsModel.Employees)
-                                        {
-                                            if (division.info == employees.division)
-                                            {
-                                                <option value="@employees.firstName">@employees.firstName @employees.name @employees.lastName</option>
-                                            }
-                                        }
-                                    </optgroup>
-                                }
-                            }
-                        </select>
-
-                    </div>
-                </div>
-
-                <p></p>
-
-                <div class="info">
-                    <h6>Информация о посетителе</h6>
-                    <div class="info_visitor">
-
-                        <div class="wrapper_1">
-                            <div class="input_snaname">
-                                <p>Фамилия*:</p>
-                                <input type="text" asp-for="User.firstName" requaired />
-                                <i class='bx-snameme'></i>
-                            </div>
-
-                            <div class="input_name">
-                                <p>Имя*:</p>
-                                <input type="text" asp-for="User.name" requaired />
-                                <i class='bx-name'></i>
-                            </div>
-
-                            <div class="input_name">
-                                <p>Отчество*:</p>
-                                <input type="text" asp-for="User.lastName" requaired />
-                                <i class='bx-patronymic'></i>
-                            </div>
-
-                            <div class="input_name">
-                                <p>Телефон:</p>
-                                <input type="text" asp-for="User.number" requaired />
-                                <i class='num'> </i>
-                            </div>
-
-                            <div class="input_name">
-                                <p>E-mail:</p>
-                                <input type="text" asp-for="User.email" requaired />
-                                <i class='bx-mail'></i>
-                            </div>
-                        </div>
+						<div id="block6" class="info">
+							<h3>Принимающая сторона</h3>
+							<p>Подразделение*:</p>
+							<select id="selectvalue_2" asp-for="User.division">
+								<option value="">Выберите подразделение</option>
+								@foreach (var division in GroupsModel.Divisions)
+								{
+									<option value="@division.info">@division.info</option>
+								}
+							</select>
+							<p></p>
+							<p>ФИО*:</p>
+							<select id="selectvalue_2" asp-for="User.employee">
+								<option value="">Выберите сотрудника</option>
+								@{
+									foreach (var division in GroupsModel.Divisions)
+									{
+										<optgroup label="@division.info">
+											@foreach (var employees in GroupsModel.Employees)
+											{
+												if (division.info == employees.division)
+												{
+													<option value="@employees.firstName">@employees.firstName @employees.name @employees.lastName</option>
+												}
+											}
+										</optgroup>
+									}
+								}
+							</select>
+						</div>
+					</div>
 
 
-                        <div class="wrapper_2">
-                            <div class="input_snaname">
-                                <p>Организация:</p>
-                                <input type="text" asp-for="User.organization" requaired />
-                                <i class='bx-snameme'></i>
-                            </div>
+					<div id="block7" class="info">
+						<h3>Информация о посетителе</h3>
+						<div class="g_table">
+							<table>
+								<tr>
+									<td>
+										<h5>Фамилия*:</h5>
+									</td>
+									<td>
+										<input type="text" asp-for="User.firstName" requaired />
+									</td>
+									<td>
+										<h5>Имя*:</h5>
+									</td>
+									<td>
+										<input type="text" asp-for="User.name" requaired />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Отчество*:</h5>
+									</td>
+									<td>
+										<input type="text" asp-for="User.lastName" requaired />
+									</td>
+									<td>
+										<h5>Телефон:</h5>
+									</td>
+									<td>
+										<input type="text" asp-for="User.number" requaired />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>E-mail:</h5>
+									</td>
+									<td>
+										<input type="text" asp-for="User.email" requaired />
+									</td>
+									<td>
+										<h5>Организация:</h5>
+									</td>
+									<td>
+										<input type="text" asp-for="User.organization" requaired />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Примечание:</h5>
+									</td>
+									<td>
+										<input type="text" asp-for="User.note" requaired />
+									</td>
+									<td>
+										<h5>Дата рождения:</h5>
+									</td>
+									<td>
+										<input type="date" asp-for="User.birthday" requaired />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h5>Серия:</h5>
+									</td>
+									<td>
+										<input type="text" name="seriesPassport" requaired />
+									</td>
+									<td>
+										<h5>Номер:</h5>
+									</td>
+									<td>
+										<<input type="text" name="numberPassport" requaired />
+									</td>
+								</tr>
+							</table>
+						</div>
+					<input type="submit" id="button_add" asp-page-handler="Add">Добавить посетителя</button>
 
-                            <div class="input_name">
-                                <p>Примечание:</p>
-                                <input type="text" asp-for="User.note" requaired />
-                                <i class='bx-name'></i>
-                            </div>
-
-                            <div class="input_name">
-                                <p>Дата рождения:</p>
-                                <input type="date" asp-for="User.birthday" requaired />
-                                <i class='bx-date'></i>
-                            </div>
-
-                            <div class="input_name">
-                                <p>Серия:</p>
-                                <input type="text" name="seriesPassport" requaired />
-                                <i class='bx-series'></i>
-                            </div>
-
-                            <div class="input_name">
-                                <p>Номер:</p>
-                                <input type="text" name="numberPassport" requaired />
-                                <i class='bx-num'></i>
-                            </div>
-
-                            <input type="submit" asp-page-handler="Add" value="Добавить посетителя" />
-                           @*  <input type="submit" id="button_add" value="Добавить посетителя" runat="server" asp-page-handler="Add" /> *@
-                        </div>
-
-                    </div>
-                </div>
+					</div>
 
 
-                <div class="info">
-                    <h6>Список посетителей</h6>
+					<div id="block8" class="info">
+						<h3>Список посетителей</h3>
 
-                    <div info_file>
-                        <label for="visits"></label>
-                        <input type="file" name="uploadedExelGroupUsers" accept=".xls,.pdf" />
-                        <input type="submit" asp-page-handler="Excel" value="Загрузить" />
-                        <a href='table.xls'>Скачать шаблон списка</a>
-                    </div>
+						<div info_file>
+							<label for="visits"></label>
+							<input type="file" name="uploadedExelGroupUsers" accept=".xls,.pdf" />
+							<input type="submit" asp-page-handler="Excel" value="Загрузить" />
+							<a href='table.xls'>Скачать шаблон списка</a>
+						</div>
 
 
-                    <div class="table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>№</th>
-                                    <th>ФИО</th>
-                                    <th>Контакты</th>
-                                    <th>Фотография</th>
-                                    <th>Pdf</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    if (GroupsModel.groupUser != null)
-                                    {
-                                        foreach (var group in GroupsModel.groupUser)
-                                        {
-                                            <tr>
-                                                <td></td>
-                                                <td>@group.name</td>
-                                                <td>@group.number</td>
-                                                <td> <input type="file" name="uploadedPhotoGroupUsers" /> </td>
-                                                <td><input type="file" name="uploadedPdfGroupUsers" /></td>
-                                            </tr>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        foreach (var user in GroupsModel.groupUser)
-                                        {
-                                            <tr>
-                                                <td></td>
-                                                <td>@user.name</td>
-                                                <td>@user.number</td>
-                                                <td> <input type="file" name="uploadedPhotoGroupUsers" /> </td>
-                                                <td><input type="file" name="uploadedPdfGroupUsers" /></td>
-                                            </tr>
-                                        }
-                                    }
+						<div class="table">
+							<table>
+								<thead>
+									<tr>
+										<th>№</th>
+										<th>ФИО</th>
+										<th>Контакты</th>
+										<th>Фотография</th>
+									</tr>
+								</thead>
+								<tbody>
+									@{
+										if (GroupsModel.groupUser != null)
+										{
+											foreach (var group in GroupsModel.groupUser)
+											{
+												<tr>
+													<td></td>
+													<td>@group.name</td>
+													<td>@group.number</td>
+													<td> <input type="file" name="uploadedPhotoGroupUsers" /> </td>
+													<td><input type="file" name="uploadedPdfGroupUsers" /></td>
+												</tr>
+											}
+										}
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
 
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
-                <input type="submit" asp-page-handler="Clear" value="Очистить" />
-                <input type="submit" asp-page-handler="Create" value="Оформить заявку" />
 
-            </form>
-        </div>
-    </center>
+					<div id="block9" class="info">
+						<h3>Прикрепляемые документы</h3>
 
-</body>
+						<div class="doc">
+							<input type="file" />
+						</div>
+					</div>
+					<div id="block10">
+					<input type="submit" id="button1" asp-page-handler="Clear" value="Очистить форму" />
+					<input type="submit" id="button2" asp-page-handler="Create" value="Оформить заявку" />
+					</div>
+				</form>
+			</div>
+		</center>
+	</body>
 
 </html>
-
-

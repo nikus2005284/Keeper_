@@ -13,35 +13,39 @@
 
 <body>
     <center>
-    <div class="wrapper">
+        <div class="box" id="Auth">
+            <form method="post" role="form" enctype="multipart/form-data">
 
+                <h2>Авторизация</h2>
+                <center>
+                    <div class="inputBox">
+                        <input type="text" asp-for="InputAuth.login" required="required">
+                        <span>Имя пользователя</span>
+                        <i></i>
+                    </div>
 
-        <h1>Авторизация</h1>
-        <form method="post" class="form-signin" role="form">
+                    <div class="inputBox">
+                        <input type="password" asp-for="InputAuth.password" required="required">
+                        <span>Пароль</span>
+                        <i></i>
+                    </div>
+                </center>
 
-            <div asp-validation-summary="All"></div>
+                <div class="remember_forgot" align="left">
+                    <label><input type="checkbox" name="checkbox" /> Запомнить</label>
+                </div>
 
-            <span asp-validation-for="InputAuth.login"></span>
-            <input type="text" asp-for="InputAuth.login" placeholder="Имя пользователя" requaired autofocus>
+                <div class="links" align="right">
+                    <p>
+                        <a asp-page="SignUp">Зарегистрироваться</a>
+                    </p>
+                </div>
 
-            <p></p>
+                <input type="submit" value="Вход">
 
-            <span asp-validation-for="InputAuth.password"></span>
-            <input type="password" asp-for="InputAuth.password" placeholder="Пароль" requaired autofocus>
-            
-            <p></p>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
-        </form>
-            <div class="register_link">
-                <p>
-                    Нет аккаунта?
-                    <a asp-page="SignUp">Зарегистрироваться</a>
-                </p>
-            </div>
-    </div>
+            </form>
+        </div>
     </center>
-
 </body>
 
 </html>

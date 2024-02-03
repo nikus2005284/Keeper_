@@ -315,13 +315,19 @@ namespace API.Controllers
         #endregion
 
         #region Костыль
-        static int Options = 1;
-        [HttpPost("PostOptions")]
-        public IActionResult PostOptions(int option)
+        static int Option = 1;
+        public List<string> Options { get; set; } = new List<string> { "Личная", "Групповая" };
+        [HttpPost("PostOption")]
+        public IActionResult PostOption(int option)
         {
-            Options = option;
+            Option = option;
 
             return Ok();
+        }
+        [HttpGet("GetOption")]
+        public IActionResult GetOption()
+        {
+            return Ok(Option);
         }
         [HttpGet("GetOptions")]
         public IActionResult GetOptions()

@@ -12,19 +12,21 @@ namespace Web.Pages
         static HttpClient client = new HttpClient();
         public List<Individ> Individs { get; set; } = new List<Individ>();
         public List<GroupUsers> GroupUsers { get; set; } = new List<GroupUsers>();
-        static public int Option;
+        public static List<string> Options { get; set; } = new List<string>();
+        public int Option = 1;
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
+            Options = await client.GetFromJsonAsync<List<string>>("https://localhost:7108/api/Api/GetOptions");
             Individs = await client.GetFromJsonAsync<List<Individ>>($"https://localhost:7108/api/Api/GetIndivid/{id}");
             GroupUsers = await client.GetFromJsonAsync<List<GroupUsers>>($"https://localhost:7108/api/Api/GetGroups/{id}");
-            Option = await client.GetFromJsonAsync<int>("https://localhost:7108/api/Api/GetOptions");
+            Option = await client.GetFromJsonAsync<int>("https://localhost:7108/api/Api/GetOption");
             return Page();
         }
 
-        public async Task<IActionResult> OnPostOptionAsync()
+        public async Task<IActionResult> OnPostOptionAsync(int option)
         {
-            using var response = await client.PostAsJsonAsync($"https://localhost:7108/api/Api/PostOptions", Option);
+            using var response = await client.PostAsJsonAsync($"https://localhost:7108/api/Api/PostOption", option);
             return RedirectToPage();
         }
     }

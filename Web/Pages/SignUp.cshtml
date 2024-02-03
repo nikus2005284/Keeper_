@@ -3,47 +3,44 @@
 @{
 }
 
-<head>
-    <title>Sing Up</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/stileSignUp.css" />
-</head>
-<body>
-    <center>
-        <div class="box">
-            <p></p>
-            <h2>Регистрация</h2>
-            <form method="post" class="form-signin" role="form">
+<html>
+    <head>
+        <title>Sing Up</title>
 
-                <div asp-validation-summary="All"></div>
-
-                <span asp-validation-for="InputSignUp.login"></span>
-                <input type="text" asp-for="InputSignUp.login" class="form-control" placeholder="Почта" autofocus>
-
-                <p></p>
-
-                <span asp-validation-for="InputSignUp.password"></span>
-                <input type="password" asp-for="InputSignUp.password" class="form-control" placeholder="Пароль" required autofocus>
-
-                <p></p>
-
-                <span asp-validation-for="InputSignUp.userName"></span>
-                <input type="text" asp-for="InputSignUp.userName" class="form-control" placeholder="Имя" autofocus>
-
-                <p></p>
-
-                <input type="text" name = "sPassport" class="form-control" placeholder="Серия паспорта" required autofocus>
-               
-                <p></p>
-
-                <input type="text" name="nPassport" class="form-control" placeholder="Номер паспорта" required autofocus>
-
-                <p></p>
-
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                    Зарегистрироваться
-                </button>
-            </form>
-
-        </div>
-    </center>
-</body>
+    </head>
+    <body>
+        <center>
+            <div class="box" id="Sign">
+            <form method="post" role="form" enctype="multipart/form-data">
+                    <h2>Регистрация</h2>
+                    <center>
+                        <div class="inputBox">
+                            <input type="text" asp-for="InputSignUp.login" required="required">
+                            <span>Электронная почта</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="text" asp-for="InputSignUp.userName" required="required">
+                            <span>Имя</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" asp-for="InputSignUp.password" required="required">
+                            <span>Пароль</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="text" asp-for="InputSignUp.passport" required="required">
+                            <span>Серия и номер паспорта</span>
+                            <i></i>
+                        </div>
+                    </center>
+                    <div class="links">
+                        <a asp-page="Auth">Авторизация</a>
+                    </div>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+        </center>
+    </body>
+</html>

@@ -5,37 +5,42 @@
 }
 
 <html>
-<head>
-    <link rel="stylesheet" href="~/css/site.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
-    <center>
-        @{
-            var sessionId = HttpContext.Session.GetString("SampleSession");
-            if (sessionId != null)
-            {
-                <h1 style="color: #fff">Тип заявки</h1>
-                <a class="btn btn-lg btn-primary btn-block" asp-page="Personal">
-                    <img width="300" height="300" src="~/image/profile.jpg" />
-                    <p></p>
-                    <h4>Личная</h4>
-                </a>
-                <a class="btn btn-lg btn-primary btn-block" asp-page="Groups">
-                    <img width="300" height="300" src="~/image/team.jpg" />
-                    <p></p>
-                    <h4>Групповая</h4>
-                </a>
-                <p></p>
-                <a class="btn btn-lg btn-primary btn-block" asp-page="History" asp-route-id="@sessionId">История заявок</a>
-            }
-            else
-            {
-                <h1>Добро пожаловать</h1>
-            }
-        }
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    </head>
 
-    </center>
+    <body>
+        <div class="wrapper">
+            <center>
+                @{
+                    var sessionId = HttpContext.Session.GetString("SampleSession");
+                    if (sessionId != null)
+                    {
+                        <h1>Тип заявки</h1>
+                        <div class="container">
+                            <a class="btn" asp-page="Personal">
+                                <img width="200" height="200" src="~/img/one.png" />
+                                <p></p>
+                                <h4>Личная</h4>
+                            </a>
+                            <a class="btn" asp-page="Groups">
+                                <img width="200" height="200" src="~/img/group.png" />
+                                <p></p>
+                                <h4>Групповая</h4>
+                            </a>
+                        </div>
+                        <p></p>
+                    <a class="btn btn-outline-dark" asp-page="History" asp-route-id="@sessionId">История заявок</a>
+                    }
+                    else
+                    {
+                        <h1>Добро пожаловать</h1>
+                    }
+                }
 
-</body>
+            </center>
+        </div>
+    </body>
 </html>

@@ -5,175 +5,171 @@
 }
 
 <html>
-<body>
-    <a class="btn btn-lg btn-primary btn-block" asp-page="Index" style="padding-left: 10px">
-        <h4>Назад</h4>
-    </a>
-    <center>
-        <div style="width: 1030px">
-            <form method="post" role="form" enctype="multipart/form-data">
-                <h2>Форма записи на посещение мероприятия</h2>
-                <div id="block1" class="info">
-                    <center>
-                        <h3>Информация для пропуска</h3>
-                        <center><h4>Срок действия заявки:</h4></center>
-                        <h5>
-                            C*
-                            <input type="date" asp-for="Individ.beginDate" required="required">
-                            по
-                            <input type="date" asp-for="Individ.endDate" required="required">
-                        </h5>
-                        <center><h4>Цель посещения:</h4></center>
-                        <select asp-for="Individ.target">
-                            <option value="">Выберите цель</option>
-                            @foreach (var target in Model.Targets)
-                            {
-                                <option value="@target.info">@target.info</option>
-                            }
-                        </select>
-                    </center>
-                </div>
+	<body>
+		<a class="btn btn-outline-dark" asp-page="Index">Назад</a>
+		<center>
+			<div style="width: 1030px">
+				<form method="post" role="form" enctype="multipart/form-data">
+					<h2>Форма записи на посещение мероприятия</h2>
+					<div id="block1" class="info">
+						<center>
+							<h3>Информация для пропуска</h3>
+							<center><h4>Срок действия заявки:</h4></center>
+							<h5>
+								C*
+								<input type="date" asp-for="Individ.beginDate" required="required">
+								по
+								<input type="date" asp-for="Individ.endDate" required="required">
+							</h5>
+							<center><h4>Цель посещения:</h4></center>
+							<select asp-for="Individ.target">
+								<option value="">Выберите цель</option>
+								@foreach (var target in Model.Targets)
+								{
+									<option value="@target.info">@target.info</option>
+								}
+							</select>
+						</center>
+					</div>
 
-                <div id="block2" class="info">
-                    <center>
-                        <h3>Принимающая сторона</h3>
-                        <h5>Подразделение*:</h5>
-                        <select asp-for="Individ.division" runat="server">
-                            <option value="" selected="selected">Выберите подразделение</option>
-                            @{
-                                foreach (var division in Model.Divisions)
-                                {
-                                    <option value="@division.info">@division.info</option>
-                                }
-                            }
-                        </select>
-                        <h5>ФИО*:</h5>
-                        <select asp-for="Individ.employee" runat="server">
-                            <option value="">Выберите сотрудника</option>
-                            @{
-                                foreach (var division in Model.Divisions)
-                                {
-                                    <optgroup label="@division.info">
-                                        @foreach (var employees in Model.Employees)
-                                        {
-                                            if (division.info == employees.division)
-                                            {
-                                                <option value="@employees.firstName">@employees.firstName @employees.name @employees.lastName</option>
-                                            }
-                                        }
-                                    </optgroup>
-                                }
-                            }
-                        </select>
-                    </center>
-                </div>
-                <p></p>
-                <div class="info2">
-                    <h3>Информация о посетителе</h3>
-                    <table>
-                        <tr>
-                            <td>
-                                <h5>Фамилия*:</h5>
-                            </td>
-                            <td>
-                                <input type="text" asp-for="Individ.firstName" required="required">
-                            </td>
-                            <td>
-                                <h5>Организация:</h5>
-                            </td>
-                            <td>
-                                <input type="text" asp-for="Individ.organization">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Имя*:</h5>
-                            </td>
-                            <td>
-                                <input type="text" asp-for="Individ.name" required="required">
-                            </td>
-                            <td>
-                                <h5>Примечание*:</h5>
-                            </td>
-                            <td>
-                                <input type="text" asp-for="Individ.note" required="required">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Отчество:</h5>
-                            </td>
-                            <td>
-                                <input type="text" asp-for="Individ.lastName">
-                            </td>
-                            <td>
-                                <h5>Дата рождения*:</h5>
-                            </td>
-                            <td>
-                                <input type="date" asp-for="Individ.birthday" required="required">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Телефон:</h5>
-                            </td>
-                            <td>
-                                <input type="text" asp-for="Individ.number">
-                            </td>
-                            <td>
-                                <h5>Серия*:</h5>
-                            </td>
-                            <td>
-                                <input type="text" name="sPassport" required="required">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Email*:</h5>
-                            </td>
-                            <td>
-                                <input type="text" asp-for="Individ.email" required="required">
-                            </td>
-                            <td>
-                                <h5>Номер*:</h5>
-                            </td>
-                            <td>
-                                <input type="text" name="nPassport" required="required">
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="foto">
-                        <center>
-
-
-                            <img src="~/Files/1.jpg" id="img" width="120px" height="120px">
-
-                            <p></p>
-                            <input type="file" name="uploadedPhoto" onchange="readURL(this);" />
-                        </center>
-                    </div>
-                </div>
-                <div class="info" id="block1">
-                    <h3>Прикрепить документ</h3>
-                    <input type="file" name="uploadedPdf">
-                </div>
-                <div id="block2">
-                    <input type="submit" value="Оформить заявку" />
-                </div>
-            </form>
-        </div>
-    </center>
-</body>
+					<div id="block2" class="info">
+						<center>
+							<h3>Принимающая сторона</h3>
+							<h5>Подразделение*:</h5>
+							<select asp-for="Individ.division" runat="server">
+								<option value="" selected="selected">Выберите подразделение</option>
+								@{
+									foreach (var division in Model.Divisions)
+									{
+										<option value="@division.info">@division.info</option>
+									}
+								}
+							</select>
+							<h5>ФИО*:</h5>
+							<select asp-for="Individ.employee" runat="server">
+								<option value="">Выберите сотрудника</option>
+								@{
+									foreach (var division in Model.Divisions)
+									{
+										<optgroup label="@division.info">
+											@foreach (var employees in Model.Employees)
+											{
+												if (division.info == employees.division)
+												{
+													<option value="@employees.firstName">@employees.firstName @employees.name @employees.lastName</option>
+												}
+											}
+										</optgroup>
+									}
+								}
+							</select>
+						</center>
+					</div>
+					<p></p>
+					<div class="info2">
+						<div class="info2_header">
+							<h3>Информация о посетителе</h3>
+						</div>
+						<table>
+							<tr>
+								<td>
+									<h5>Фамилия*:</h5>
+								</td>
+								<td>
+									<input type="text" asp-for="Individ.firstName" required="required">
+								</td>
+								<td>
+									<h5>Организация:</h5>
+								</td>
+								<td>
+									<input type="text" asp-for="Individ.organization">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h5>Имя*:</h5>
+								</td>
+								<td>
+									<input type="text" asp-for="Individ.name" required="required">
+								</td>
+								<td>
+									<h5>Примечание*:</h5>
+								</td>
+								<td>
+									<input type="text" asp-for="Individ.note" required="required">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h5>Отчество:</h5>
+								</td>
+								<td>
+									<input type="text" asp-for="Individ.lastName">
+								</td>
+								<td>
+									<h5>Дата рождения*:</h5>
+								</td>
+								<td>
+									<input type="date" asp-for="Individ.birthday" required="required">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h5>Телефон:</h5>
+								</td>
+								<td>
+									<input type="text" asp-for="Individ.number">
+								</td>
+								<td>
+									<h5>Серия*:</h5>
+								</td>
+								<td>
+									<input type="text" name="sPassport" required="required">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h5>Email*:</h5>
+								</td>
+								<td>
+									<input type="text" asp-for="Individ.email" required="required">
+								</td>
+								<td>
+									<h5>Номер*:</h5>
+								</td>
+								<td>
+									<input type="text" name="nPassport" required="required">
+								</td>
+							</tr>
+						</table>
+						<div class="foto">
+							<center>
+								<img src="~/img/one.png" id="img" width="120px" height="120px">
+								<p></p>
+								<input type="file" name="uploadedPhoto" onchange="readURL(this);" />
+							</center>
+						</div>
+					</div>
+					<div class="info" id="block1">
+						<h3>Прикрепить документ</h3>
+						<input type="file" name="uploadedPdf">
+					</div>
+					<div id="block10">
+					<input type="submit" id="button2" value="Оформить заявку" />
+					</div>
+				</form>
+			</div>
+		</center>
+	</body>
 </html>
-
 <script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#img').attr('src', e.target.result).width(120).height(120);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#img').attr('src', e.target.result).width(120).height(120);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 </script>
