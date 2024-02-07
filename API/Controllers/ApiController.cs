@@ -315,8 +315,7 @@ namespace API.Controllers
         #endregion
 
         #region Костыль
-        static int Option = 1;
-        public List<string> Options { get; set; } = new List<string> { "Личная", "Групповая" };
+        static int Option = 0;
         [HttpPost("PostOption")]
         public IActionResult PostOption(int option)
         {
@@ -329,11 +328,7 @@ namespace API.Controllers
         {
             return Ok(Option);
         }
-        [HttpGet("GetOptions")]
-        public IActionResult GetOptions()
-        {
-            return Ok(Options);
-        }
+ 
         static List<GroupUsers> Kostil { get; set; } = new List<GroupUsers>();
         [HttpPost("PostKostil")]
         public IActionResult PostKostil(List<GroupUsers> kostil)

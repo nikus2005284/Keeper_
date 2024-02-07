@@ -304,22 +304,25 @@ body {
     font-style: normal;
 }
 
+
+/*поменяла расположение*/
+
 .g_table {
-    margin-left: 70px;
     margin-bottom: 15px;
 }
 
 #block5 {
-    width: 468px;
-    height: 250px;
+    width: 400px;
+    height: 252px;
     float: left;
-    margin-left: 195px;
+    margin-left: 494px;
 }
 
 #block6 {
     width: 400px;
     height: 210px;
     float: left;
+    margin-top: -221px;
 }
 
 #block7 {
@@ -333,9 +336,22 @@ body {
     justify-content: center;
 }
 
+#block9 {
+    position: absolute;
+}
+
+/*добавила свойство overflow-x: hidden; и скрыла скроллбар +положнение */
+
 #block8 {
     width: 549px;
     height: 318px;
+    overflow-x: hidden;
+    margin-left: -326px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 #block10 {
@@ -352,3 +368,7 @@ body {
     #button_add:hover, #button1:hover, #button2:hover {
         box-shadow: 0px 0px 5px 1px #1c1c1c;
     }
+
+.cards {
+    display: inline-block;
+}
