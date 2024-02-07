@@ -11,11 +11,12 @@ namespace ClassLibrary
     {
         [Key]
         public int id_employee { get; set; }
-        public string firstName { get; set; }
-        public string name {  get; set; }
-        public string lastName { get; set; }
-        public string division { get; set; }
-        public string department { get; set; }
-
+        public string? firstName { get; set; }
+        public string? name {  get; set; }
+        public string? lastName { get; set; }
+        public string? division { get; set; }
+        public string? department { get; set; }
+        public string login_employee { get; set; }
+        public string password_employee { get; set; }
     }
 }

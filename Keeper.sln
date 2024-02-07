@@ -16,6 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{C
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "General department", "General department\General department.csproj", "{83EA943D-52AC-47B4-A247-F154A0FB377C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5229589-A3FD-4CF9-AD14-3EC72277E261} = {A5229589-A3FD-4CF9-AD14-3EC72277E261}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

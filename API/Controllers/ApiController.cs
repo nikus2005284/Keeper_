@@ -89,11 +89,20 @@ namespace API.Controllers
             var groups = _db.groupUsers;
             return Ok(groups);
         }
-        #endregion
+		#endregion
 
-        #region Регистрация
+		#region Вывести все индивидуальные заявки
+		[HttpGet("GetIndivids")]
+		public IActionResult GetIndivids()
+		{
+			var individ = _db.individ;
+			return Ok(individ);
+		}
+		#endregion
 
-        [HttpPost("SignUp")]
+		#region Регистрация
+
+		[HttpPost("SignUp")]
         public IActionResult SignUp([FromBody] User InputSignUp)
         {
             if (FindUserForPassport(InputSignUp.passport) == null)
@@ -158,11 +167,28 @@ namespace API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        #endregion
 
-        #region Отправка индивидуальной заявки
+		[HttpPost("AuthEmployee")]
+		public IActionResult AuthEmployee([FromBody] Employees InputAuth)
+		{
+			try
+			{
+				Employees employee = _db.employees.Where(u => u.login_employee == InputAuth.login_employee && u.password_employee == InputAuth.password_employee).FirstOrDefault<Employees>();
+				if (employee == null)
+					return NotFound();
 
-        [HttpPost("CreateIndivid")]
+				return Ok(employee);
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.Message);
+			}
+		}
+		#endregion
+
+		#region Отправка индивидуальной заявки
+
+		[HttpPost("CreateIndivid")]
         public IActionResult CreateIndivid([FromBody] Individ Individ)
         {
             bool BlackList = true;
