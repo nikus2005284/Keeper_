@@ -25,8 +25,9 @@ namespace Web.Pages
 
         public async Task<IActionResult> OnPostOptionAsync(int option)
         {
-            using var response = await client.PostAsJsonAsync($"https://localhost:7108/api/Api/PostOption", option);
-            return RedirectToPage();
+            Option = option;
+            using var response = await client.PostAsJsonAsync($"https://localhost:7108/api/Api/PostOption", Option);
+            return Page();
         }
     }
 }

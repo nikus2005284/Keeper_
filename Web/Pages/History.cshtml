@@ -19,76 +19,74 @@
                                 }
                             }
                         </select>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td><h3>ID</h3></td>
+                                    <td><h3>Подразделение</h3></td>
+                                    <td><h3>Дата</h3></td>
+                                    <td><h3>Время</h3></td>
+                                    <td><h3>Статус</h3></td>
+                                    <td><h3>Комментарий</h3></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Option == 0)
+                                {
+                                    foreach (var individ in Model.Individs)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <h3>@individ.id</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@individ.division</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@individ.beginDate</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@individ.endDate</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@individ.status</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@individ.comment</h3>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var group in Model.GroupUsers)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <h3>@group.applicationNumber</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@group.division</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@group.beginDate</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@group.endDate</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@group.status</h3>
+                                            </td>
+                                            <td>
+                                                <h3>@group.comment</h3>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
                     </form>
-                </div>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td><h3>ID</h3></td>
-                            <td><h3>Подразделение</h3></td>
-                            <td><h3>Дата</h3></td>
-                            <td><h3>Время</h3></td>
-                            <td><h3>Статус</h3></td>
-                            <td><h3>Комментарий</h3></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Option == 0)
-                        {
-                            foreach (var individ in Model.Individs)
-                            {
-                                <tr>
-                                    <td>
-                                        <h3>@individ.id</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@individ.division</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@individ.beginDate</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@individ.endDate</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@individ.status</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@individ.comment</h3>
-                                    </td>
-                                </tr>
-                            }
-                        }
-                        else
-                        {
-                            foreach (var group in Model.GroupUsers)
-                            {
-                                <tr>
-                                    <td>
-                                        <h3>@group.applicationNumber</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@group.division</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@group.beginDate</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@group.endDate</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@group.status</h3>
-                                    </td>
-                                    <td>
-                                        <h3>@group.comment</h3>
-                                    </td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                    </tbody>
-                </table>
+                </div>   
             </center>
             <center>
                 <a class="btn btn-outline-dark" asp-page="Index">Назад</a>
